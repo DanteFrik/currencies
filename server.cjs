@@ -1,17 +1,17 @@
 import express from 'express';
-import pgp from 'pg-promise';
+import pgPromise from 'pg-promise';
 import axios from 'axios';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const pgp = require('pg-promise')();
-const db = pgp('postgres://username:password@localhost:5432/database');
+const pgp = pgPromise(); // изменено название переменной
+const db = pgp('postgres://vika:123@localhost:5432/currencies');
 
 app.get('/', async (req, res) => {
   try {
     // запросы к базе данных с использованием pg-promise
-    const result = await db.any('SELECT * FROM таблица');
+    const result = await db.any('SELECT * FROM currencies');
     res.json(result);
   } catch (error) {
     console.error(error);
